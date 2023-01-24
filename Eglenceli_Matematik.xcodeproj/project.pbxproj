@@ -13,6 +13,7 @@
 		F87B63EB2980283F0053E3A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F87B63E92980283F0053E3A2 /* Main.storyboard */; };
 		F87B63ED298028400053E3A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F87B63EC298028400053E3A2 /* Assets.xcassets */; };
 		F87B63F0298028400053E3A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F87B63EE298028400053E3A2 /* LaunchScreen.storyboard */; };
+		F87B63F929804DCB0053E3A2 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B63F829804DCB0053E3A2 /* MainMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F87B63EC298028400053E3A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F87B63EF298028400053E3A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F87B63F1298028400053E3A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F87B63F829804DCB0053E3A2 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		F87B63E22980283F0053E3A2 /* Eglenceli_Matematik */ = {
 			isa = PBXGroup;
 			children = (
+				F87B63F7298046BF0053E3A2 /* TransactionFiles */,
 				F87B63E32980283F0053E3A2 /* AppDelegate.swift */,
 				F87B63E52980283F0053E3A2 /* SceneDelegate.swift */,
 				F87B63E72980283F0053E3A2 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				F87B63F1298028400053E3A2 /* Info.plist */,
 			);
 			path = Eglenceli_Matematik;
+			sourceTree = "<group>";
+		};
+		F87B63F7298046BF0053E3A2 /* TransactionFiles */ = {
+			isa = PBXGroup;
+			children = (
+				F87B63F829804DCB0053E3A2 /* MainMenu.swift */,
+			);
+			path = TransactionFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				F87B63E82980283F0053E3A2 /* ViewController.swift in Sources */,
 				F87B63E42980283F0053E3A2 /* AppDelegate.swift in Sources */,
 				F87B63E62980283F0053E3A2 /* SceneDelegate.swift in Sources */,
+				F87B63F929804DCB0053E3A2 /* MainMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

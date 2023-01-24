@@ -9,21 +9,31 @@ import UIKit
 
 class MainMenu: UIViewController {
 
+    @IBOutlet weak var collectButton: UIButton!
+    @IBOutlet weak var subtractionButton: UIButton!
+    @IBOutlet weak var divisionButtonn: UIButton!
+    @IBOutlet weak var multiplicationButton: UIButton!
+    @IBOutlet weak var multipliTableButton: UIButton!
+    @IBOutlet weak var gamesButton: UIButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
+        collectButton.layer.cornerRadius = 10
+        subtractionButton.layer.cornerRadius = 10
+        divisionButtonn.layer.cornerRadius = 10
+        multiplicationButton.layer.cornerRadius = 10
+        multipliTableButton.layer.cornerRadius = 10
+        gamesButton.layer.cornerRadius = 10
+
+
+
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

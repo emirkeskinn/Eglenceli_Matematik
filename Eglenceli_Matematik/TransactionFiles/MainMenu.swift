@@ -15,7 +15,7 @@ class MainMenu: UIViewController {
     @IBOutlet weak var multiplicationButton: UIButton!
     @IBOutlet weak var multipliTableButton: UIButton!
     @IBOutlet weak var gamesButton: UIButton!
-    
+    @IBOutlet weak var games: UIButton!
     
     
     override func viewDidLoad() {
@@ -28,6 +28,8 @@ class MainMenu: UIViewController {
         multiplicationButton.layer.cornerRadius = 10
         multipliTableButton.layer.cornerRadius = 10
         gamesButton.layer.cornerRadius = 10
+        
+        
 
 
 

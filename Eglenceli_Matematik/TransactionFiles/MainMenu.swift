@@ -39,3 +39,10 @@ class MainMenu: UIViewController {
 
 
 }
+
+
+
+// divide
+//minus çıkarma
+//plus
+//addition and substraction

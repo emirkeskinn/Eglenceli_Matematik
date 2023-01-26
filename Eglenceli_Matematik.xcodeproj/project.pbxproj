@@ -18,6 +18,8 @@
 		F87B63FD2982C37F0053E3A2 /* SubstractionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B63FC2982C37F0053E3A2 /* SubstractionPage.swift */; };
 		F87B63FF2982C3BD0053E3A2 /* DivisionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B63FE2982C3BD0053E3A2 /* DivisionPage.swift */; };
 		F87B64012982C41C0053E3A2 /* MultiplicationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B64002982C41C0053E3A2 /* MultiplicationPage.swift */; };
+		F87B64042983101A0053E3A2 /* alkis.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F87B64032983101A0053E3A2 /* alkis.mp3 */; };
+		F87B6406298310240053E3A2 /* ses2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F87B6405298310240053E3A2 /* ses2.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		F87B63FC2982C37F0053E3A2 /* SubstractionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstractionPage.swift; sourceTree = "<group>"; };
 		F87B63FE2982C3BD0053E3A2 /* DivisionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionPage.swift; sourceTree = "<group>"; };
 		F87B64002982C41C0053E3A2 /* MultiplicationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationPage.swift; sourceTree = "<group>"; };
+		F87B64032983101A0053E3A2 /* alkis.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alkis.mp3; sourceTree = "<group>"; };
+		F87B6405298310240053E3A2 /* ses2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ses2.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		F87B63E22980283F0053E3A2 /* Eglenceli_Matematik */ = {
 			isa = PBXGroup;
 			children = (
+				F87B640229830FE30053E3A2 /* Voices */,
 				F87B63F7298046BF0053E3A2 /* TransactionFiles */,
 				F87B63E32980283F0053E3A2 /* AppDelegate.swift */,
 				F87B63E52980283F0053E3A2 /* SceneDelegate.swift */,
@@ -88,6 +93,15 @@
 				F87B64002982C41C0053E3A2 /* MultiplicationPage.swift */,
 			);
 			path = TransactionFiles;
+			sourceTree = "<group>";
+		};
+		F87B640229830FE30053E3A2 /* Voices */ = {
+			isa = PBXGroup;
+			children = (
+				F87B6405298310240053E3A2 /* ses2.mp3 */,
+				F87B64032983101A0053E3A2 /* alkis.mp3 */,
+			);
+			path = Voices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,8 +163,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F87B63F0298028400053E3A2 /* LaunchScreen.storyboard in Resources */,
+				F87B6406298310240053E3A2 /* ses2.mp3 in Resources */,
 				F87B63ED298028400053E3A2 /* Assets.xcassets in Resources */,
 				F87B63EB2980283F0053E3A2 /* Main.storyboard in Resources */,
+				F87B64042983101A0053E3A2 /* alkis.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

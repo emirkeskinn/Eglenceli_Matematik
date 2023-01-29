@@ -45,10 +45,10 @@ class SubstractionPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(switchMode)
-        print(switchMode.isOn)
-        switchMode.isOn = true
-        print(switchMode.isOn)
+       // view.addSubview(switchMode)
+       // print(switchMode.isOn)
+       // switchMode.isOn = true
+      //  print(switchMode.isOn)
         //sendButton.isHidden = true
        // textField.isHidden = true
         aButton.layer.cornerRadius = 8
@@ -57,7 +57,7 @@ class SubstractionPage: UIViewController {
         dButton.layer.cornerRadius = 8
       //  sendButton.layer.cornerRadius = 8
         showAnswer.layer.cornerRadius = 8
-        switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
+     //   switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
         transactionFunc()
         scoreBoard()
         counter = 0

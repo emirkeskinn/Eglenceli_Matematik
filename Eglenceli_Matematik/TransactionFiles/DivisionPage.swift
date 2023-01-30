@@ -49,26 +49,26 @@ class DivisionPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-/*
-        // view.addSubview(switchMode)
-       //  print(switchMode.isOn)
-        // switchMode.isOn = true
-        // print(switchMode.isOn)
-       //  sendButton.isHidden = true
-        // textField.isHidden = true
+
+         view.addSubview(switchMode)
+         print(switchMode.isOn)
+         switchMode.isOn = true
+         print(switchMode.isOn)
+         sendButton.isHidden = true
+         textField.isHidden = true
          aButton.layer.cornerRadius = 8
          bButton.layer.cornerRadius = 8
          cButton.layer.cornerRadius = 8
          dButton.layer.cornerRadius = 8
-        // sendButton.layer.cornerRadius = 8
+         sendButton.layer.cornerRadius = 8
          showAnswer.layer.cornerRadius = 8
-        // switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
+         switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
          transactionFunc()
          scoreBoard()
          counter = 0
          timeLabel.text = "\(counter!)"
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFunc), userInfo: nil, repeats: true)
-        */
+        
     }
     
     
@@ -117,6 +117,7 @@ class DivisionPage: UIViewController {
             answer = "\(result!)"
             questionLabel.text = "\(question)"
             answerLabel.text =  ""
+            imageView.loadGif(name: "clock")
 
             // rastgele bir button seç ve işlem sonucunu göster
             let resultButton = buttons.randomElement()!
@@ -157,7 +158,8 @@ class DivisionPage: UIViewController {
         @IBAction func buttonTapped(_ sender: UIButton) {
             if sender.title(for: .normal) == "\(result!)" {
                 answerLabel.text = "Doğru... Aferin Sana.. "
-                imageView.image = UIImage(named: "kalp")
+                //imageView.image = UIImage(named: "kalp")
+                imageView.loadGif(name: "fisek")
                 print("Tebrikler!")
                 right += 1
                 rightLabel.text = "\(right)"
@@ -174,7 +176,7 @@ class DivisionPage: UIViewController {
                 sender.backgroundColor = .red
                 tabiEfendim()
             }
-            Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.transactionFunc()
             }
         }

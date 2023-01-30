@@ -23,6 +23,7 @@
 		F887DA3F29867CFC00887F48 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F887DA3E29867CFC00887F48 /* TestViewController.swift */; };
 		F887DA432986862B00887F48 /* ImageExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = F887DA422986862B00887F48 /* ImageExtention.swift */; };
 		F887DA452986870D00887F48 /* fisek.gif in Resources */ = {isa = PBXBuildFile; fileRef = F887DA442986870D00887F48 /* fisek.gif */; };
+		F887DA472986EE4E00887F48 /* clock.gif in Resources */ = {isa = PBXBuildFile; fileRef = F887DA462986EE4E00887F48 /* clock.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		F887DA3E29867CFC00887F48 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F887DA422986862B00887F48 /* ImageExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtention.swift; sourceTree = "<group>"; };
 		F887DA442986870D00887F48 /* fisek.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fisek.gif; sourceTree = "<group>"; };
+		F887DA462986EE4E00887F48 /* clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = clock.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				F87B63E72980283F0053E3A2 /* ViewController.swift */,
 				F87B63E92980283F0053E3A2 /* Main.storyboard */,
 				F887DA442986870D00887F48 /* fisek.gif */,
+				F887DA462986EE4E00887F48 /* clock.gif */,
 				F87B63EC298028400053E3A2 /* Assets.xcassets */,
 				F87B63EE298028400053E3A2 /* LaunchScreen.storyboard */,
 				F87B63F1298028400053E3A2 /* Info.plist */,
@@ -171,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F887DA472986EE4E00887F48 /* clock.gif in Resources */,
 				F87B63F0298028400053E3A2 /* LaunchScreen.storyboard in Resources */,
 				F87B6406298310240053E3A2 /* ses2.mp3 in Resources */,
 				F87B63ED298028400053E3A2 /* Assets.xcassets in Resources */,

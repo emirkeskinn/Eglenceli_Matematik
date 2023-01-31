@@ -51,13 +51,13 @@ class AdditionPage: UIViewController {
         print(switchMode.isOn)
         switchMode.isOn = true
         print(switchMode.isOn)
-        //sendButton.isHidden = true
-       // textField.isHidden = true
+        sendButton.isHidden = true
+        textField.isHidden = true
         aButton.layer.cornerRadius = 8
         bButton.layer.cornerRadius = 8
         cButton.layer.cornerRadius = 8
         dButton.layer.cornerRadius = 8
-      //  sendButton.layer.cornerRadius = 8
+        sendButton.layer.cornerRadius = 8
         showAnswer.layer.cornerRadius = 8
         switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
         transactionFunc()

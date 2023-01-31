@@ -45,19 +45,19 @@ class SubstractionPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // view.addSubview(switchMode)
-       // print(switchMode.isOn)
-       // switchMode.isOn = true
-      //  print(switchMode.isOn)
-        //sendButton.isHidden = true
-       // textField.isHidden = true
+        view.addSubview(switchMode)
+        print(switchMode.isOn)
+        switchMode.isOn = true
+        print(switchMode.isOn)
+        sendButton.isHidden = true
+        textField.isHidden = true
         aButton.layer.cornerRadius = 8
         bButton.layer.cornerRadius = 8
         cButton.layer.cornerRadius = 8
         dButton.layer.cornerRadius = 8
-      //  sendButton.layer.cornerRadius = 8
+        sendButton.layer.cornerRadius = 8
         showAnswer.layer.cornerRadius = 8
-     //   switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
+        switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
         transactionFunc()
         scoreBoard()
         counter = 0
@@ -68,7 +68,7 @@ class SubstractionPage: UIViewController {
     }
     
 
-    // ----------------FUNCTIONS ---------------------------------------------
+// ----------------FUNCTIONS ---------------------------------------------
         
         @objc func timerFunc() {
             counter! += 1
@@ -126,11 +126,11 @@ class SubstractionPage: UIViewController {
                 }
             }
         }
-    //----------------------END---------------------------------------------------------
+//----------------------END---------------------------------------------------------
         
         
         
-    //--------------------VOICES----------------------------------------------
+//--------------------VOICES----------------------------------------------
         func applaud() {
             let alkis = Bundle.main.url(forResource: "alkis", withExtension: "mp3")
         audioPlayer = try! AVAudioPlayer(contentsOf: alkis!)
@@ -144,12 +144,12 @@ class SubstractionPage: UIViewController {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         }
-    //----------------------END----------------------------------------------------
+//----------------------END----------------------------------------------------
         
         
         
         
-    // ---------------------BUTTONS------------------------------------------------
+// ---------------------BUTTONS------------------------------------------------
         @IBAction func buttonTapped(_ sender: UIButton) {
             if sender.title(for: .normal) == "\(result!)" {
                 answerLabel.text = "Doğru... Aferin Sana.. "
@@ -195,7 +195,7 @@ class SubstractionPage: UIViewController {
             imageView.image = UIImage(named: "hayir")
             tabiEfendim()
         }
-    //---------------------END-----------------------------------------------
+//---------------------END-----------------------------------------------
 
 
 }

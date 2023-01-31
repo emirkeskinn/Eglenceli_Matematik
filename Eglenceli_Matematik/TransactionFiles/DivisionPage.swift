@@ -44,6 +44,7 @@ class DivisionPage: UIViewController {
     var timer = Timer()
     var counter: Int?
     
+    var buttonsIsEnabled = true
     
     
     
@@ -102,6 +103,23 @@ class DivisionPage: UIViewController {
                 dButton.isHidden = true
             }
         }
+    
+    
+    func buttonsEnabled() {
+        if buttonsIsEnabled {
+            aButton.isEnabled = false
+            bButton.isEnabled = false
+            cButton.isEnabled = false
+            dButton.isEnabled = false
+            buttonsIsEnabled = false
+        } else {
+            aButton.isEnabled = true
+            bButton.isEnabled = true
+            cButton.isEnabled = true
+            dButton.isEnabled = true
+            buttonsIsEnabled = true
+        }
+    }
         
         
         func transactionFunc(){
@@ -118,7 +136,7 @@ class DivisionPage: UIViewController {
             questionLabel.text = "\(question)"
             answerLabel.text =  ""
             imageView.loadGif(name: "clock")
-
+            
             // rastgele bir button seç ve işlem sonucunu göster
             let resultButton = buttons.randomElement()!
             resultButton.setTitle("\(result!)", for: .normal)
@@ -165,6 +183,8 @@ class DivisionPage: UIViewController {
                 rightLabel.text = "\(right)"
                 sender.backgroundColor = .green
                 applaud()
+                buttonsEnabled()
+
                 
                 
             } else {
@@ -175,10 +195,13 @@ class DivisionPage: UIViewController {
                 wrongLabel.text = "\(wrong)"
                 sender.backgroundColor = .red
                 tabiEfendim()
+                buttonsEnabled()
             }
-            Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
                 self.transactionFunc()
+                buttonsEnabled()
             }
+          
         }
         
         @IBAction func sendButtonTapped(_ sender: Any) {

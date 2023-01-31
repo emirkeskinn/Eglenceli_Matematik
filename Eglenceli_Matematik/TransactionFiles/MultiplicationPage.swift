@@ -44,6 +44,7 @@ class MultiplicationPage: UIViewController {
     var timer = Timer()
     var counter: Int?
     
+    var buttonsIsEnabled = true
     
     
     override func viewDidLoad() {
@@ -103,6 +104,24 @@ class MultiplicationPage: UIViewController {
                     dButton.isHidden = true
                 }
             }
+    
+    func buttonsEnabled() {
+        if buttonsIsEnabled {
+            aButton.isEnabled = false
+            bButton.isEnabled = false
+            cButton.isEnabled = false
+            dButton.isEnabled = false
+            buttonsIsEnabled = false
+        } else {
+            aButton.isEnabled = true
+            bButton.isEnabled = true
+            cButton.isEnabled = true
+            dButton.isEnabled = true
+            buttonsIsEnabled = true
+        }
+    }
+    
+    
             
             
             func transactionFunc(){
@@ -166,6 +185,7 @@ class MultiplicationPage: UIViewController {
                     rightLabel.text = "\(right)"
                     sender.backgroundColor = .green
                     applaud()
+                    buttonsEnabled()
                     
                     
                 } else {
@@ -176,9 +196,11 @@ class MultiplicationPage: UIViewController {
                     wrongLabel.text = "\(wrong)"
                     sender.backgroundColor = .red
                     tabiEfendim()
+                    buttonsEnabled()
                 }
                 Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.transactionFunc()
+                    self.buttonsEnabled()
                 }
             }
             

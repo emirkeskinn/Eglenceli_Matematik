@@ -103,7 +103,7 @@ class AdditionPage: UIViewController {
     func transactionFunc(){
         let number1 = Int.random(in: 1...99)
         let number2 = Int.random(in: 1...50)
-        let  question = "Bu işlemin Sonucu Kaçtır ?   \(number1) + \(number2)"
+        let  question = "  \(number1) + \(number2)"
         aButton.backgroundColor = customColor
         bButton.backgroundColor = customColor
         cButton.backgroundColor = customColor
@@ -179,7 +179,7 @@ class AdditionPage: UIViewController {
     userAnswer = textField.text
       if userAnswer == answer {
           print("tebrikler")
-          imageView.image = UIImage(named: "kalp")
+          imageView.loadGif(name: "fisek")
           answerLabel.text = "Doğru... Aferin Sana.. "
         } else {
             imageView.image = UIImage(named: "hayir")

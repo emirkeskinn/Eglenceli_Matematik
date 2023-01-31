@@ -43,6 +43,11 @@ class SubstractionPage: UIViewController {
     var timer = Timer()
     var counter: Int?
     
+    var buttonsIsEnabled = true
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(switchMode)
@@ -98,6 +103,23 @@ class SubstractionPage: UIViewController {
                 dButton.isHidden = true
             }
         }
+    
+    
+    func buttonsEnabled() {
+        if buttonsIsEnabled {
+            aButton.isEnabled = false
+            bButton.isEnabled = false
+            cButton.isEnabled = false
+            dButton.isEnabled = false
+            buttonsIsEnabled = false
+        } else {
+            aButton.isEnabled = true
+            bButton.isEnabled = true
+            cButton.isEnabled = true
+            dButton.isEnabled = true
+            buttonsIsEnabled = true
+        }
+    }
         
         
         func transactionFunc(){
@@ -159,6 +181,7 @@ class SubstractionPage: UIViewController {
                 rightLabel.text = "\(right)"
                 sender.backgroundColor = .green
                 applaud()
+                buttonsEnabled()
                 
                 
             } else {
@@ -169,9 +192,11 @@ class SubstractionPage: UIViewController {
                 wrongLabel.text = "\(wrong)"
                 sender.backgroundColor = .red
                 tabiEfendim()
+                buttonsEnabled()
             }
             Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.transactionFunc()
+                self.buttonsEnabled()
             }
         }
         

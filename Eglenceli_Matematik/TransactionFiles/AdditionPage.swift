@@ -43,6 +43,7 @@ class AdditionPage: UIViewController {
     var timer = Timer()
     var counter: Int?
     
+    var buttonsIsEnabled = true
     
     
     override func viewDidLoad() {
@@ -96,6 +97,22 @@ class AdditionPage: UIViewController {
             bButton.isHidden = true
             cButton.isHidden = true
             dButton.isHidden = true
+        }
+    }
+    
+    func buttonsEnabled() {
+        if buttonsIsEnabled {
+            aButton.isEnabled = false
+            bButton.isEnabled = false
+            cButton.isEnabled = false
+            dButton.isEnabled = false
+            buttonsIsEnabled = false
+        } else {
+            aButton.isEnabled = true
+            bButton.isEnabled = true
+            cButton.isEnabled = true
+            dButton.isEnabled = true
+            buttonsIsEnabled = true
         }
     }
     
@@ -159,6 +176,7 @@ class AdditionPage: UIViewController {
             rightLabel.text = "\(right)"
             sender.backgroundColor = .green
             applaud()
+            buttonsEnabled()
             
             
         } else {
@@ -169,9 +187,11 @@ class AdditionPage: UIViewController {
             wrongLabel.text = "\(wrong)"
             sender.backgroundColor = .red
             tabiEfendim()
+            buttonsEnabled()
         }
         Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.transactionFunc()
+            self.buttonsEnabled()
         }
     }
     

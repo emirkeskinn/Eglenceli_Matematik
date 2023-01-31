@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F842962F29898E940059CC20 /* MultiplicationTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F842962E29898E940059CC20 /* MultiplicationTable.swift */; };
+		F842963129899AD10059CC20 /* MixedTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F842963029899AD10059CC20 /* MixedTransactions.swift */; };
+		F842963329899D160059CC20 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F842963229899D160059CC20 /* ScoreBoard.swift */; };
 		F87B63E42980283F0053E3A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B63E32980283F0053E3A2 /* AppDelegate.swift */; };
 		F87B63E62980283F0053E3A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B63E52980283F0053E3A2 /* SceneDelegate.swift */; };
 		F87B63E82980283F0053E3A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B63E72980283F0053E3A2 /* ViewController.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F842962E29898E940059CC20 /* MultiplicationTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationTable.swift; sourceTree = "<group>"; };
+		F842963029899AD10059CC20 /* MixedTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixedTransactions.swift; sourceTree = "<group>"; };
+		F842963229899D160059CC20 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		F87B63E02980283F0053E3A2 /* Eglenceli_Matematik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eglenceli_Matematik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87B63E32980283F0053E3A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F87B63E52980283F0053E3A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +109,9 @@
 				F87B63FE2982C3BD0053E3A2 /* DivisionPage.swift */,
 				F87B64002982C41C0053E3A2 /* MultiplicationPage.swift */,
 				F887DA3E29867CFC00887F48 /* TestViewController.swift */,
+				F842962E29898E940059CC20 /* MultiplicationTable.swift */,
+				F842963029899AD10059CC20 /* MixedTransactions.swift */,
+				F842963229899D160059CC20 /* ScoreBoard.swift */,
 			);
 			path = TransactionFiles;
 			sourceTree = "<group>";
@@ -193,9 +202,12 @@
 			files = (
 				F887DA432986862B00887F48 /* ImageExtention.swift in Sources */,
 				F87B63E82980283F0053E3A2 /* ViewController.swift in Sources */,
+				F842963129899AD10059CC20 /* MixedTransactions.swift in Sources */,
 				F87B63FB2982C3510053E3A2 /* AdditionPage.swift in Sources */,
 				F87B63E42980283F0053E3A2 /* AppDelegate.swift in Sources */,
+				F842962F29898E940059CC20 /* MultiplicationTable.swift in Sources */,
 				F87B63E62980283F0053E3A2 /* SceneDelegate.swift in Sources */,
+				F842963329899D160059CC20 /* ScoreBoard.swift in Sources */,
 				F87B63F929804DCB0053E3A2 /* MainMenu.swift in Sources */,
 				F87B63FF2982C3BD0053E3A2 /* DivisionPage.swift in Sources */,
 				F87B64012982C41C0053E3A2 /* MultiplicationPage.swift in Sources */,

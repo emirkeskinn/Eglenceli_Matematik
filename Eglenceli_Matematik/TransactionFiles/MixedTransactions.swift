@@ -66,18 +66,18 @@ class MixedTransactions: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //imageView.image = images[currentIndex]
         imageView.image = UIImage(named: "gokce4")
+        self.view.bringSubviewToFront(aButton)
         self.view.bringSubviewToFront(bButton)
         self.view.bringSubviewToFront(cButton)
         self.view.bringSubviewToFront(dButton)
         self.view.bringSubviewToFront(trueButton)
         self.view.bringSubviewToFront(falseButton)
-        self.view.bringSubviewToFront(aButton)
+        
         self.view.bringSubviewToFront(easyButton)
         self.view.bringSubviewToFront(normalButton)
         self.view.bringSubviewToFront(hardButton)
+        
         easyButton.layer.cornerRadius = 10
         normalButton.layer.cornerRadius = 10
         hardButton.layer.cornerRadius = 10
@@ -85,9 +85,22 @@ class MixedTransactions: UIViewController {
         tuslariGizle()
         sureTuslariHidden()
         trueFalseTuslariniGizle()
+        
         seconds = 0
         scorTablosu()
         counter = 0
+        
+///*
+        //imageView.image = images[currentIndex]
+       
+        
+        
+
+        
+        
+        
+        
+
       //  sureLabel.text = "\(counter!)"
         
         
@@ -107,6 +120,7 @@ class MixedTransactions: UIViewController {
             
             print("değiştirilen skor tablosu: \(skorTablosu)")
         }
+ //*/
     }
     
 // ------------   TUŞ KOMBİNASYONLARI ------ GİZLE VE GÖSTER ------------------------------
@@ -115,7 +129,7 @@ class MixedTransactions: UIViewController {
         easyButton.layer.isHidden = false
         normalButton.layer.isHidden = false
         hardButton.layer.isHidden = false
-        imageView.layer.isHidden = false
+       // imageView.layer.isHidden = false
         aButton.layer.isHidden = true
         bButton.layer.isHidden = true
         cButton.layer.isHidden = true

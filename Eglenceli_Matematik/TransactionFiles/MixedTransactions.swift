@@ -36,6 +36,11 @@ class MixedTransactions: UIViewController {
     @IBOutlet weak var wrongTitle: UILabel!
     @IBOutlet weak var wrongLabel: UILabel!
     
+    @IBOutlet weak var buttonView: UIView!
+    
+    @IBOutlet weak var buttont: UIButton!
+    
+    
 
     var randomIndex: Int?
     
@@ -50,7 +55,7 @@ class MixedTransactions: UIViewController {
     
     var buttonsAreHidden = true
     var sureTuslariGizle = true
-    var secenekleriGizle = false
+    var secenekleriGizle = true
     
     var seconds = 0
     var timeRecords: [Int] = []
@@ -60,13 +65,15 @@ class MixedTransactions: UIViewController {
     var myisim: String!
     
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = UIImage(named: "gokce4")
+        
+        buttont.layer.isHidden = true
+        
+        
+        
+      //  imageView.image = UIImage(named: "gokce4")
+        self.view.bringSubviewToFront(buttonView)
         self.view.bringSubviewToFront(aButton)
         self.view.bringSubviewToFront(bButton)
         self.view.bringSubviewToFront(cButton)
@@ -78,10 +85,15 @@ class MixedTransactions: UIViewController {
         self.view.bringSubviewToFront(normalButton)
         self.view.bringSubviewToFront(hardButton)
         
+        
         easyButton.layer.cornerRadius = 10
         normalButton.layer.cornerRadius = 10
         hardButton.layer.cornerRadius = 10
         
+        
+
+       // secenekleriHidden()
+       
         tuslariGizle()
         sureTuslariHidden()
         trueFalseTuslariniGizle()
@@ -89,19 +101,6 @@ class MixedTransactions: UIViewController {
         seconds = 0
         scorTablosu()
         counter = 0
-        
-///*
-        //imageView.image = images[currentIndex]
-       
-        
-        
-
-        
-        
-        
-        
-
-      //  sureLabel.text = "\(counter!)"
         
         
         if let timeEklenecek = UserDefaults.standard.object(forKey: "sure7") as? [String] {
@@ -120,7 +119,6 @@ class MixedTransactions: UIViewController {
             
             print("değiştirilen skor tablosu: \(skorTablosu)")
         }
- //*/
     }
     
 // ------------   TUŞ KOMBİNASYONLARI ------ GİZLE VE GÖSTER ------------------------------
@@ -129,13 +127,34 @@ class MixedTransactions: UIViewController {
         easyButton.layer.isHidden = false
         normalButton.layer.isHidden = false
         hardButton.layer.isHidden = false
-       // imageView.layer.isHidden = false
+        
+        imageView.layer.isHidden = false
+        answerLabel.layer.isHidden = true
+        
         aButton.layer.isHidden = true
         bButton.layer.isHidden = true
         cButton.layer.isHidden = true
-        dButton.layer.isHidden = true
-        answerLabel.layer.isHidden = true
+       dButton.layer.isHidden = true
+    buttonView.layer.isHidden = true
+        
+        
     }
+    
+    
+    func tuslariGoster(){
+        easyButton.layer.isHidden = true
+        normalButton.layer.isHidden = true
+        hardButton.layer.isHidden = true
+        imageView.layer.isHidden = false
+        aButton.layer.isHidden = false
+        bButton.layer.isHidden = false
+        cButton.layer.isHidden = false
+        dButton.layer.isHidden = false
+        answerLabel.layer.isHidden = false
+        buttonView.layer.isHidden = false
+    }
+    
+    
     
     func secenekleriHidden() {
         if secenekleriGizle {
@@ -167,7 +186,6 @@ class MixedTransactions: UIViewController {
     func trueFalseTuslariniGizle() {
         trueButton.layer.isHidden = true
         falseButton.layer.isHidden = true
-        
     }
     
     
@@ -193,31 +211,8 @@ class MixedTransactions: UIViewController {
         }
     }
     
+
     
-    /*
-    func sureTuslariGoster() {
-    sureTitle.layer.isHidden = false
-    sureLabel.layer.isHidden = false
-    dogruTitle.layer.isHidden = false
-    dogruLabel.layer.isHidden = false
-    yanlisTitle.layer.isHidden = false
-    yanlisLabel.layer.isHidden = false
-    cevapLabel.layer.isHidden = false
-    }
-    */
-    func toggleButtons() {
-        if buttonsAreHidden {
-            trueButton.layer.isHidden = true
-            falseButton.layer.isHidden = true
-            buttonsAreHidden = false
-            print(trueButton!)
-        } else {
-            trueButton.layer.isHidden = false
-            falseButton.layer.isHidden = false
-            buttonsAreHidden = true
-            print(trueButton!)
-        }
-    }
 //------------ BİTTİ -------------------------------------------------------------
 
     
@@ -227,17 +222,6 @@ class MixedTransactions: UIViewController {
     
     
 // ----------  SÜRE İŞLEMLERİ -- SKOR İŞLEMLERİ VE ÇETELELER  ----------------
-/*
-    func timerFunc(){
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFonsiyonu), userInfo: nil, repeats: true)
-    }
-    
-    
-    @objc func timerFonsiyonu() {
-        counter! += 1
-        sureLabel.text = "\(counter!)"
-    }
-    */
     
     func startTimer() {
        // print("skor tablosu (start timer): \(skorTablosu)")
@@ -263,15 +247,6 @@ class MixedTransactions: UIViewController {
         print("time: \(time)")
         sureniz = time
         
-        
-        
-      
-        
-        
-        
-        
-        
-
         skorTablosu.append(time)
         print(("skorTablosu.append: \(time)"))
         
@@ -279,11 +254,8 @@ class MixedTransactions: UIViewController {
         if let timerim = UserDefaults.standard.object(forKey: "sure7") {
                      let timerim2 = timerim
                      print("UD set edilen time: \(timerim2)")
-                    
                  }
 
-        
-        //isimAlert1()
     }
     
     
@@ -420,18 +392,11 @@ class MixedTransactions: UIViewController {
         let soru11 = UIImage(named: "soru5")
         let soru12 = UIImage(named: "soru12")
         let soru13 = UIImage(named: "soru29")
-        let soru14 = UIImage(named: "true2")
-        let soru15 = UIImage(named: "true3")
-     //   let soru16 = UIImage(named: "soru26")
-     //   let soru17 = UIImage(named: "true2")
-     //   let soru18 = UIImage(named: "true3")
-     //   let soru19 = UIImage(named: "true4")
-     //   let soru20 = UIImage(named: "soru7")
-       // let soru11 = UIImage(named: "end")
+  
         
         let randomIndex = Int.random(in: 0..<images.count)
         imageView.image = images[randomIndex]
-    //    print("randım index: \(images[randomIndex]!)")
+     //   print("randım index: \(images[randomIndex]!)")
         
         
         
@@ -447,13 +412,9 @@ class MixedTransactions: UIViewController {
                 
         case soru2:
             if randomIndex == 1 {
-                trueButton.layer.isHidden = false
-                falseButton.layer.isHidden = false
-                aButton.layer.isHidden = true
-                bButton.layer.isHidden = true
-                cButton.layer.isHidden = true
-                dButton.layer.isHidden = true
-                trueButton.setTitle("Doğru", for: .normal)}
+                sonuc = 43
+                randomButtons()
+                showAnswerLabel.text = "\(sonuc!)"}
         
         case soru3:
          
@@ -519,89 +480,14 @@ class MixedTransactions: UIViewController {
                  sonuc = 4
                  randomButtons()
                   showAnswerLabel.text = "\(sonuc!)"}
-        case soru14:
-              if randomIndex == 13 {
-                  trueButton.layer.isHidden = false
-                  falseButton.layer.isHidden = false
-                  aButton.layer.isHidden = true
-                  bButton.layer.isHidden = true
-                  cButton.layer.isHidden = true
-                  dButton.layer.isHidden = true
-                  trueButton.setTitle("Doğru", for: .normal)}
-        case soru15:
-              if randomIndex == 14 {
-                  trueButton.layer.isHidden = false
-                  falseButton.layer.isHidden = false
-                  aButton.layer.isHidden = true
-                  bButton.layer.isHidden = true
-                  cButton.layer.isHidden = true
-                  dButton.layer.isHidden = true
-                  trueButton.setTitle("Doğru", for: .normal)}
+
             
       default:
           break
-}
-        
-        
-
+     }
       answerLabel.text = ""
   }
-           
-        /*
-          switch imageView.image {
-          case soru1:
-            sonuc = 8
-            randomButtons()
-              }
-          case soru2:
-              trueButton.layer.isHidden = false
-              falseButton.layer.isHidden = false
-              aButton.layer.isHidden = true
-              bButton.layer.isHidden = true
-              cButton.layer.isHidden = true
-              dButton.layer.isHidden = true
-              trueButton.setTitle("Doğru", for: .normal)
-            //sonuc = 7         // false
-            randomButtons()
-          case soru3:
-            self.trueButton.layer.isHidden = true
-            self.falseButton.layer.isHidden = true
-            self.aButton.layer.isHidden = false
-            self.bButton.layer.isHidden = false
-            self.cButton.layer.isHidden = false
-            self.dButton.layer.isHidden = false
-            self.sonuc = 43
-            self.randomButtons()
-        case soru4:
-            sonuc = 9
-            randomButtons()
-        case soru5:
-            sonuc = 70
-            randomButtons()
-        case soru6:
-            sonuc = 27
-            randomButtons()
-        case soru7:
-            sonuc = 20
-            randomButtons()
-        case soru8:
-            sonuc = 34
-            randomButtons()
-        case soru9:
-            sonuc = 12
-            randomButtons()
-        case soru10:
-            sonuc = 48
-            randomButtons()
-      //  case soru11:
-        //      tuslariGizle()
-        default:
-            break
-        }
-        cevapLabel.text = ""
-    }
-    */
-
+    
 //------------ BİTTİ -------------------------------------------------------------
 
 
@@ -625,12 +511,6 @@ class MixedTransactions: UIViewController {
                    // alkis()
                     print("currentIndex\(currentIndex)")
                     
-                    /*
-                    if self.dogruLabel.text == "\(1)" {
-                        self.stopTimer()
-                    }
-                     */
-                    
                     if currentIndex == images.count {
                         
                         tuslariGizle()
@@ -648,18 +528,9 @@ class MixedTransactions: UIViewController {
                     } else {
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-                            
-                            
-                            
                         imageView.image = images[currentIndex]
                         fonksiyonIslemler()}
-                        
                     }
-                
-                    if self.currentIndex == 10 {
-                      //  theEndAlert(titleM: "Tebrikler", messageM: "\(skorTablosu[0])" )
-            }
-                    
         } else {
             currentIndex += 1
             yanlis += 1
@@ -686,28 +557,7 @@ class MixedTransactions: UIViewController {
         print("olmadı")
     }
 }
-    
-    // yukarıdakinin yedeği
-    /*
-     @IBAction func buttonTapped(_ sender: UIButton!) {
-         if sender.title(for: .normal) == "\(sonuc!)" {
-             print("tebrikler")
-             currentIndex += 1
-                     if currentIndex == images.count {
-                         currentIndex = 0
-                     }
-                     imageView.image = images[currentIndex]
-             fonksiyonIslemler()
-         } else {
-         print("olmadı")
-     }
-     
-     }
-     */
-    
-    
-    
-    
+  
     @IBAction func TrueFalseButtonTapped(_ sender: UIButton!) {
             print("currentIndex\(currentIndex)")
         if sender.title(for: .normal) == "Doğru" {
@@ -719,28 +569,18 @@ class MixedTransactions: UIViewController {
             sender.backgroundColor = .green
             answerLabel.text = "Doğru... Aferin Sana"
          //   toggleButtons()
-            
-            
-            
+
                     if currentIndex == images.count {
                         stopTimer()
                         tuslariGizle()
                         sureTuslariHidden()
                         theEndAlert(titleM: "Tebrikler", messageM: "\(sureniz!)" )
                         imageView.image = UIImage(named: "gokce4")
-                        
                     } else {
-                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-
                       //  imageView.image = images[currentIndex]
                         fonksiyonIslemler()}
-                        
                     }
-            
-                //   if self.currentIndex == 10 {
-               //    }
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                 secenekleriHidden()
                    // imageView.image = images[currentIndex]
@@ -775,8 +615,6 @@ class MixedTransactions: UIViewController {
     
 
 
-    
-    
     @IBAction func kolayButton(_ sender: Any) {
         seconds = 0
         startTimer()
@@ -790,14 +628,20 @@ class MixedTransactions: UIViewController {
         easyButton.layer.isHidden = true
         normalButton.layer.isHidden = true
         hardButton.layer.isHidden = true
-        imageView.layer.isHidden = false
-        aButton.layer.isHidden = false
-        bButton.layer.isHidden = false
-        cButton.layer.isHidden = false
-        dButton.layer.isHidden = false
+       // imageView.layer.isHidden = false
+       // aButton.layer.isHidden = false
+       // bButton.layer.isHidden = false
+       // cButton.layer.isHidden = false
+       // dButton.layer.isHidden = false
+      //  tuslariGoster()
+        print(aButton.layer.isHidden)
+        buttont.layer.isHidden = false
         
-        images = [UIImage(named: "soru30"), UIImage(named: "true1"),UIImage(named: "soru3"), UIImage(named: "soru28"),UIImage(named: "soru2"), UIImage(named: "soru19"),UIImage(named: "soru21"), UIImage(named: "soru20"),UIImage(named: "soru13"), UIImage(named: "soru22"), UIImage(named: "soru5"), UIImage(named: "soru12"), UIImage(named: "soru29"), UIImage(named: "true2"), UIImage(named: "true3")]
+        
+        
+      //  images = [UIImage(named: "soru30"), UIImage(named: "true1"),UIImage(named: "soru3"), UIImage(named: "soru28"),UIImage(named: "soru2"), UIImage(named: "soru19"),UIImage(named: "soru21"), UIImage(named: "soru20"),UIImage(named: "soru13"), UIImage(named: "soru22"), UIImage(named: "soru5"), UIImage(named: "soru12"), UIImage(named: "soru29"), UIImage(named: "true2"), UIImage(named: "true3")]
        
+        images = [UIImage(named: "soru30"), UIImage(named: "soru30"),UIImage(named: "soru3"), UIImage(named: "soru28"),UIImage(named: "soru2"), UIImage(named: "soru19"),UIImage(named: "soru21"), UIImage(named: "soru20"),UIImage(named: "soru13"), UIImage(named: "soru22"), UIImage(named: "soru5"), UIImage(named: "soru12"), UIImage(named: "soru29"), UIImage(named: "soru30"), UIImage(named: "soru30")]
         
        // imageView.image = images[currentIndex]
         fonksiyonIslemler()
@@ -887,34 +731,7 @@ class MixedTransactions: UIViewController {
                  trueButton.setTitle("Doğru", for: .normal)}
       default:
           break
-}
-        
-        
-        /*
-        print("skor tablosu: \(skorTablosu)")
-        seconds = 0
-        startTimer()
-        seconds = 0
-        dogru = 0   //YENİ EKLENDİ..............................
-        yanlis = 0  //YENİ EKLENDİ..............................
-        yanlisLabel.text = "\(0)"  //YENİ EKLENDİ..............................
-        dogruLabel.text = "\(0)"  //YENİ EKLENDİ..............................
-        currentIndex = 0
-        sureTuslariHidden()
-        kolayBut.layer.isHidden = true
-        normalBut.layer.isHidden = true
-        zorBut.layer.isHidden = true
-        imageView.layer.isHidden = false
-        aButton.layer.isHidden = false
-        bButton.layer.isHidden = false
-        cButton.layer.isHidden = false
-        dButton.layer.isHidden = false
-        
-        images = [UIImage(named: "soru30")]
-        
-        imageView.image = images[currentIndex]
-        fonksiyonIslemler()
-         */
+       }
     }
     
     @IBAction func zorButton(_ sender: Any) {
@@ -986,44 +803,5 @@ class MixedTransactions: UIViewController {
                                 } else if randomIndex == 9 {
                                     sonuc = 48
                                     }
-        
-        
-        
-        
-        /*
-        switch randomIndex {
-        case 0:
-            sonuc = 8
-        case 1:
-            trueButton.setTitle("Doğru", for: .normal)
-        case 2:
-            sonuc = 43
-        case 3:
-            sonuc = 9
-        case 4:
-            sonuc = 70
-        case 5:
-            sonuc = 27
-        case 6:
-            sonuc = 20
-        case 7:
-            sonuc = 34
-        case 8:
-            sonuc = 12
-        case 9:
-            sonuc = 48
-  
-        default:
-            break
-        }
-        
-        
-        */
-
-        
     }
-    
-    
-    
 }
-

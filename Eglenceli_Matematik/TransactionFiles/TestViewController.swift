@@ -44,6 +44,9 @@ class TestViewController: UIViewController {
     
     @IBOutlet var labels: [UILabel]!
     
+    @IBOutlet weak var dogruAferinSanaLabeli: UILabel!
+    
+    
     
     var audioPlayer = AVAudioPlayer()
     
@@ -117,6 +120,7 @@ class TestViewController: UIViewController {
         self.view.bringSubviewToFront(kolayButton)
         self.view.bringSubviewToFront(normalButton)
         self.view.bringSubviewToFront(zorButton)
+        self.view.bringSubviewToFront(dogruAferinSanaLabeli)
 
 
 
@@ -387,7 +391,8 @@ class TestViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         if sender.title(for: .normal) == labelSonuc {
-            aferinLabel.text = "Doğru... Aferin Sana"
+           // aferinLabel.text = "Doğru... Aferin Sana"
+            dogruAferinSanaLabeli.text = "Doğru... Aferin Sana"
             sender.backgroundColor = .green
             right += 1
             rightLabel.text = "\(right)"
@@ -405,11 +410,13 @@ class TestViewController: UIViewController {
                 theEndAlert(titleM: "TEBRİKLER", messageM: "Süreniz: \(sureniz!)" )
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+                dogruAferinSanaLabeli.text = ""
                 DenemefonksiyonIslemler()}
             }
             
         } else if sender.title(for: .normal) == "\(result!)" {
-            aferinLabel.text = "Doğru... Aferin Sana"
+           // aferinLabel.text = "Doğru... Aferin Sana"
+            dogruAferinSanaLabeli.text = "Doğru... Aferin Sana"
             sender.backgroundColor = .green
             right += 1
             rightLabel.text = "\(right)"
@@ -427,7 +434,8 @@ class TestViewController: UIViewController {
                 theEndAlert(titleM: "TEBRİKLER", messageM: "Süreniz: \(sureniz!)" )
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-                DenemefonksiyonIslemler()}
+                    dogruAferinSanaLabeli.text = ""
+                    DenemefonksiyonIslemler()}
             }
         } else {
             wrong += 1
@@ -790,8 +798,9 @@ class TestViewController: UIViewController {
         cButton.backgroundColor = .none
         dButton.backgroundColor = .none
         
-        var number1 = Int.random(in: 1...10)
-        var number2 = Int.random(in: 1...10)
+      
+          var number1 = Int.random(in: 1...10)
+          var number2 = Int.random(in: 1...10)
         
         if number1 > number2 {
             let sonuc = number1 / number2
@@ -830,10 +839,24 @@ class TestViewController: UIViewController {
         let randomIndex = Int.random(in: 0..<sayilar.count)
         question = sayilar[randomIndex]
         
-        
-        if question == sayilar[0]{
+        /*
+        if question == sayilar[1]{
             number1 = Int.random(in: 1...90)
             number2 = Int.random(in: 1...50)
+            simgeLabel.text = "-"
+            result = sonucCikarma
+        }
+        */
+        
+      // /*
+        if question == sayilar[0]{
+           let  number3 = Int.random(in: 90...99)
+           let number4 = Int.random(in: 90...99)
+            
+            number1 = number3
+            number2 = number4
+            
+            
             simgeLabel.text = "+"
             result = sonucToplama
         } else if question == sayilar[1] {
@@ -853,6 +876,7 @@ class TestViewController: UIViewController {
             result = sonucBolme
             
         }
+    //     */
        
         soru3 = "\(result!)"
         questionLabel3.text = soru3
@@ -894,9 +918,9 @@ class TestViewController: UIViewController {
                     assignedNumbers.insert(randomNumber)
 
                     if result! <= 10 {
-                        var randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+10)
+                        var randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+5)
                         while assignedNumbers.contains(randomNumber) {
-                            randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+10)
+                            randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+5)
                         }
                         button.setTitle("\(randomNumber)", for: .normal)
                         assignedNumbers.insert(randomNumber)

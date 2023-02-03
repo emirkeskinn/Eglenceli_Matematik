@@ -539,7 +539,6 @@ class MixedTransactions: UIViewController {
             sender.backgroundColor = .red
             tabiEfendim()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-            self.imageView.image = self.images[self.currentIndex]
             imageView.image = images[currentIndex]
             fonksiyonIslemler()
                 if wrongLabel.text == "\(1)" {
@@ -616,7 +615,6 @@ class MixedTransactions: UIViewController {
 
 
     @IBAction func kolayButton(_ sender: Any) {
-        seconds = 0
         startTimer()
         sureTuslariHidden()
         seconds = 0

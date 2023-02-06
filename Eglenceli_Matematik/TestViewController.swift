@@ -24,7 +24,6 @@ class TestViewController: UIViewController {
     @IBOutlet weak var aferinLabel: UILabel!  // KAÇTA KAÇ SORU KALDIĞI YAZILACAK
     @IBOutlet weak var simgeLabel: UILabel!
     @IBOutlet weak var esittirLabel: UILabel!
-    @IBOutlet weak var ghostLabel: UILabel!
     
     
     @IBOutlet var buttons: [UIButton]!
@@ -94,6 +93,7 @@ class TestViewController: UIViewController {
     var buttonsAreHidden = true
     var sureTuslariGizle = true
     var secenekleriGizle = true
+    var swich = "zorluk"
     
 
     override func viewDidLoad() {
@@ -346,14 +346,16 @@ class TestViewController: UIViewController {
         secenekleriHidden()
         sureTuslariHidden()
         aferinLabel.text = ""
-       // fonksiyonIslemler()
-        startTimer()
+        //fonksiyonIslemler()
+       // startTimer()
         currentIndex = 0
         seconds = 0
         right = 0
         wrong = 0
         wrongLabel.text = "\(0)"
         rightLabel.text = "\(0)"
+        swich = "kolay"
+        DenemefonksiyonIslemler1()
     }
     
     
@@ -370,22 +372,25 @@ class TestViewController: UIViewController {
         wrong = 0
         wrongLabel.text = "\(0)"
         rightLabel.text = "\(0)"
-        DenemefonksiyonIslemler()
+        swich = "normal"
+        DenemefonksiyonIslemler1()
     }
     
     @IBAction func zorButtons(_ sender: Any) {
-        imageView.image = UIImage(named: "gokce1")
+        imageView.image = UIImage(named: "sablon2")
         secenekleriHidden()
         sureTuslariHidden()
         aferinLabel.text = ""
-        startTimer()
-        currentIndex = 25
+       // startTimer()
+        currentIndex = 0
         seconds = 0
         right = 0
         wrong = 0
         wrongLabel.text = "\(0)"
         rightLabel.text = "\(0)"
-        ZORfonksiyonIslemler()
+        swich = "zor"
+       // ZORfonksiyonIslemler()
+        DenemefonksiyonIslemler1()
     }
     
     
@@ -397,7 +402,7 @@ class TestViewController: UIViewController {
             right += 1
             rightLabel.text = "\(right)"
             currentIndex += 1
-            alkis()
+          //  alkis()
             questionLabel1.layer.isHidden = false
             questionLabel2.layer.isHidden = false
             questionLabel3.layer.isHidden = false
@@ -411,7 +416,10 @@ class TestViewController: UIViewController {
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                 dogruAferinSanaLabeli.text = ""
-                DenemefonksiyonIslemler()}
+                DenemefonksiyonIslemler1()
+             
+                    
+                }
             }
             
         } else if sender.title(for: .normal) == "\(result!)" {
@@ -435,7 +443,9 @@ class TestViewController: UIViewController {
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                     dogruAferinSanaLabeli.text = ""
-                    DenemefonksiyonIslemler()}
+                    DenemefonksiyonIslemler1()
+                    
+                }
             }
         } else {
             wrong += 1
@@ -443,14 +453,14 @@ class TestViewController: UIViewController {
             //currentIndex += 1   BÖYLE YAPINCA SÜRE UZAYACAK
             wrongLabel.text = "\(wrong)"
             sender.backgroundColor = .red
-            aferinLabel.text = "Yanlış Cevap.. Sonuç \(labelSonuc) olacaktı"
+            dogruAferinSanaLabeli.text = "Yanlış Cevap.. Sonuç \(result!) olacaktı"
             print("labelSonuc: \(labelSonuc)")
-       
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             questionLabel1.layer.isHidden = false
             questionLabel2.layer.isHidden = false
             questionLabel3.layer.isHidden = false
-           NORMALfonksiyonIslemler()
+       
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+           DenemefonksiyonIslemler1()
 
             if wrongLabel.text == "\(3)" {  // MAX 10 YANLIŞ YAPABİLSİN
                 stopTimer()
@@ -469,7 +479,7 @@ class TestViewController: UIViewController {
     
     
 // ----------- İŞLEM FONKSİYONLARI ------------------------------------------------
-    /*
+    
     func fonksiyonIslemler(){
         imageView.image = UIImage(named: "gokce1")
         aButton.backgroundColor = .none
@@ -569,7 +579,7 @@ class TestViewController: UIViewController {
             }
         }
     }
-    */
+    
     
     
     
@@ -672,16 +682,7 @@ class TestViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
- 
-    
-    
-    
-    
-    
+
     
     func NORMALfonksiyonIslemler(){
         imageView.image = UIImage(named: "gokce1")
@@ -720,10 +721,7 @@ class TestViewController: UIViewController {
         
         questionLabel1.text = soru1
         questionLabel2.text = soru2
-        ghostLabel.text = ghost
-        ghostLabel.text = ghost2
-        ghostLabel.text = ghost3
-        ghostLabel.text = ghost4
+
         
         let sayilar = [toplama,cikarma,carpma,bolme]
         
@@ -829,10 +827,6 @@ class TestViewController: UIViewController {
         
         questionLabel1.text = soru1
         questionLabel2.text = soru2
-        ghostLabel.text = ghost
-        ghostLabel.text = ghost2
-        ghostLabel.text = ghost3
-        ghostLabel.text = ghost4
         
         let sayilar = [toplama,cikarma,carpma,bolme]
         
@@ -987,6 +981,359 @@ class TestViewController: UIViewController {
 
     }
     
+    
+    
+    
+    
+    func sayiDizme() {
+        var number1 = Int.random(in: 1...10)
+        var number2 = Int.random(in: 1...10)
+    if number1 > number2 {
+        let sonuc = number1 / number2
+        print("Sonuç: \(sonuc)")
+    } else {
+        let changeNumber = number1
+        number1 = number2
+        number2 = changeNumber
+        let sonuc = number1 / number2
+        print("Sonuç: \(sonuc)")
+    }
+    }
+    
+    
+    
+    
+    func DenemefonksiyonIslemler1(){
+      //  imageView.image = UIImage(named: "gokce1")
+        aButton.backgroundColor = .none
+        bButton.backgroundColor = .none
+        cButton.backgroundColor = .none
+        dButton.backgroundColor = .none
+        
+          var number1 = 0
+          var number2 = 0
+   
+        
+        let islemler = ["toplama","cikarma","carpma","bolme"]
+        let randomIndex = Int.random(in: 0..<islemler.count)
+        question = islemler[randomIndex]
+        
+        if question == islemler[0]{
+            number1 = Int.random(in: 1...99)
+            number2 = Int.random(in: 1...99)
+            questionLabel1.text = "\(number1)"
+            questionLabel2.text = "\(number2)"
+            result = number1 + number2
+            simgeLabel.text = "+"
+            sayiDizme()
+        } else if question == islemler[1] {
+            number1 = Int.random(in: 1...100)
+            number2 = Int.random(in: 1...50)
+            
+            if number1 > number2 {
+                let sonuc = number1 / number2
+                print("Sonuç: \(sonuc)")
+            } else {
+                let changeNumber = number1
+                number1 = number2
+                number2 = changeNumber
+                let sonuc = number1 / number2
+                print("Sonuç: \(sonuc)")
+            }
+            questionLabel1.text = "\(number1)"
+            questionLabel2.text = "\(number2)"
+            result = number1 - number2
+            simgeLabel.text = "-"
+            
+        } else if question == islemler[2] {
+            number1 = Int.random(in: 1...10)
+            number2 = Int.random(in: 1...10)
+            questionLabel1.text = "\(number1)"
+            questionLabel2.text = "\(number2)"
+            result = number1 * number2
+            simgeLabel.text = "X"
+            sayiDizme()
+        } else if question == islemler[3] {
+            number1 = Int.random(in: 1...100)
+            let factors = (1...number1).filter { number1 % $0 == 0 }
+            number2 = factors.randomElement()!
+            questionLabel1.text = "\(number1)"
+            questionLabel2.text = "\(number2)"
+            result = number1 / number2
+            simgeLabel.text = "/"
+            sayiDizme()
+        }
+
+        soru3 = "\(result!)"
+        questionLabel3.text = soru3
+        aferinLabel.text = "\(question!) = \(result!) LabelSonuc: \(result!)"
+        print("currentIndex: \(currentIndex)")
+        
+    
+        
+        if swich == "normal" {
+            
+        let icindenSec = [5, 8, 10, 14, 18]
+        if icindenSec.contains(currentIndex) {  //İÇERİR
+            questionLabel3.layer.isHidden = false
+            let labeller = labels.randomElement()!
+            labeller.layer.isHidden = true
+            labelSonuc = "\(labeller.text!)"
+            print("Label Sonuc: \(labelSonuc)")
+            aferinLabel.text = labelSonuc
+            
+            var assignedNumbers = Set<Int>()
+            let resultButton = buttons.randomElement()!
+            resultButton.setTitle("\(labelSonuc)", for: .normal)
+            assignedNumbers.insert(Int(labelSonuc)!)  //ATANMIŞ NUMARALAR
+
+            for button in buttons where button != resultButton {
+                if let labelSonucInt = Int(labelSonuc) {
+                    var randomNumber = Int.random(in: labelSonucInt-10...labelSonucInt+10)
+                    while assignedNumbers.contains(randomNumber) {
+                        randomNumber = Int.random(in: labelSonucInt-10...labelSonucInt+10)
+                    }
+                    button.setTitle("\(randomNumber)", for: .normal)
+                    assignedNumbers.insert(randomNumber)
+
+                    if labelSonucInt <= 10 {
+                        var randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+5)
+                        while assignedNumbers.contains(randomNumber) {
+                            randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+5)
+                        }
+                        button.setTitle("\(randomNumber)", for: .normal)
+                        assignedNumbers.insert(randomNumber)
+                    }
+                } else {
+                    // labelSonuc Int tipine dönüştürülemedi, hata işleme kodu eklenmeli
+                }
+            }
+        } else {
+            questionLabel3.layer.isHidden = true
+            
+            var assignedNumbers = Set<Int>()
+
+            let resultButton = buttons.randomElement()!
+            resultButton.setTitle("\(result!)", for: .normal)
+            assignedNumbers.insert(result!)
+
+            for button in buttons where button != resultButton {
+                if let labelSonucInt = result {
+                    var randomNumber = Int.random(in: result!-10...result!+10)
+                    while assignedNumbers.contains(randomNumber) {
+                        randomNumber = Int.random(in: result!-10...result!+10)
+                    }
+                    button.setTitle("\(randomNumber)", for: .normal)
+                    assignedNumbers.insert(randomNumber)
+
+                    if result! <= 10 {
+                        var randomNumber = Int.random(in: result!+1...result!+5)
+                        while assignedNumbers.contains(randomNumber) {
+                            randomNumber = Int.random(in: result!+1...result!+5)
+                        }
+                        button.setTitle("\(randomNumber)", for: .normal)
+                        assignedNumbers.insert(randomNumber)
+                    }
+                } else {
+                    // labelSonuc Int tipine dönüştürülemedi, hata işleme kodu eklenmeli
+                }
+            }
+        }
+        print("result: \(result!)")
+            
+        } else if  swich == "kolay" {
+            
+            
+      questionLabel3.layer.isHidden = true
+            labelSonuc = soru3 ?? "olmadi be"
+            // rastgele bir button seç ve işlem sonucunu göster
+            let resultButton = buttons.randomElement()!
+            resultButton.setTitle("\(labelSonuc)", for: .normal)
+        
+
+
+            // diğer buttonlara farklı sayılar ata
+            for button in buttons where button != resultButton {
+                button.setTitle("\(Int.random(in: result!-10...result!+10))", for: .normal)
+                if result!  <= 10 {
+                    button.setTitle("\(Int.random(in: result!+1...result!+10))", for: .normal)
+                }
+            }
+            
+        } else if swich == "zor" {
+            
+            
+            let labeller = labels.randomElement()!
+            labeller.layer.isHidden = true
+            labelSonuc = "\(labeller.text!)"
+            print("Label Sonuc: \(labelSonuc)")
+            aferinLabel.text = labelSonuc
+            if  labeller.text == soru1 {
+                print("1 gizlendi")
+            } else if labeller.text == soru2 {
+                print("2 gizlendi")
+            } else if labeller.text == soru3 {
+                print("3 gizlendi")
+            }
+            
+            // rastgele bir button seç ve işlem sonucunu göster
+            let resultButton = buttons.randomElement()!
+            resultButton.setTitle("\(labelSonuc)", for: .normal)
+        
+
+
+            // diğer buttonlara farklı sayılar ata
+            for button in buttons where button != resultButton {
+                button.setTitle("\(Int.random(in: result!-10...result!+10))", for: .normal)
+                if result!  <= 10 {
+                    button.setTitle("\(Int.random(in: result!+1...result!+10))", for: .normal)
+                }
+            }
+            
+        }
+    
+
+        
+        
+    }
 // ----------------------END ---------------------------------------------
 
 }
+
+
+/*  YEDEK
+ 
+ func DenemefonksiyonIslemler1(){
+     imageView.image = UIImage(named: "gokce1")
+     aButton.backgroundColor = .none
+     bButton.backgroundColor = .none
+     cButton.backgroundColor = .none
+     dButton.backgroundColor = .none
+     
+       var number1 = 0
+       var number2 = 0
+
+     
+     let islemler = ["toplama","cikarma","carpma","bolme"]
+     let randomIndex = Int.random(in: 0..<islemler.count)
+     question = islemler[randomIndex]
+     
+     if question == islemler[0]{
+         number1 = Int.random(in: 1...99)
+         number2 = Int.random(in: 1...99)
+         questionLabel1.text = "\(number1)"
+         questionLabel2.text = "\(number2)"
+         result = number1 + number2
+         simgeLabel.text = "+"
+         sayiDizme()
+     } else if question == islemler[1] {
+         number1 = Int.random(in: 1...100)
+         number2 = Int.random(in: 1...50)
+         
+         if number1 > number2 {
+             let sonuc = number1 / number2
+             print("Sonuç: \(sonuc)")
+         } else {
+             let changeNumber = number1
+             number1 = number2
+             number2 = changeNumber
+             let sonuc = number1 / number2
+             print("Sonuç: \(sonuc)")
+         }
+         questionLabel1.text = "\(number1)"
+         questionLabel2.text = "\(number2)"
+         result = number1 - number2
+         simgeLabel.text = "-"
+         
+     } else if question == islemler[2] {
+         number1 = Int.random(in: 1...10)
+         number2 = Int.random(in: 1...10)
+         questionLabel1.text = "\(number1)"
+         questionLabel2.text = "\(number2)"
+         result = number1 * number2
+         simgeLabel.text = "X"
+         sayiDizme()
+     } else if question == islemler[3] {
+         number1 = Int.random(in: 1...100)
+         let factors = (1...number1).filter { number1 % $0 == 0 }
+         number2 = factors.randomElement()!
+         questionLabel1.text = "\(number1)"
+         questionLabel2.text = "\(number2)"
+         result = number1 / number2
+         simgeLabel.text = "/"
+         sayiDizme()
+     }
+
+     soru3 = "\(result!)"
+     questionLabel3.text = soru3
+     aferinLabel.text = "\(question!) = \(result!) LabelSonuc: \(result!)"
+     print("currentIndex: \(currentIndex)")
+     
+     questionLabel3.layer.isHidden = true
+     
+     let icindenSec = [5, 8, 10, 14, 18]
+     if icindenSec.contains(currentIndex) {  //İÇERİR
+         questionLabel3.layer.isHidden = false
+         let labeller = labels.randomElement()!
+         labeller.layer.isHidden = true
+         labelSonuc = "\(labeller.text!)"
+         print("Label Sonuc: \(labelSonuc)")
+         
+         var assignedNumbers = Set<Int>()
+         let resultButton = buttons.randomElement()!
+         resultButton.setTitle("\(labelSonuc)", for: .normal)
+         assignedNumbers.insert(Int(labelSonuc)!)  //ATANMIŞ NUMARALAR
+
+         for button in buttons where button != resultButton {
+             if let labelSonucInt = Int(labelSonuc) {
+                 var randomNumber = Int.random(in: labelSonucInt-10...labelSonucInt+10)
+                 while assignedNumbers.contains(randomNumber) {
+                     randomNumber = Int.random(in: labelSonucInt-10...labelSonucInt+10)
+                 }
+                 button.setTitle("\(randomNumber)", for: .normal)
+                 assignedNumbers.insert(randomNumber)
+
+                 if result! <= 10 {
+                     var randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+5)
+                     while assignedNumbers.contains(randomNumber) {
+                         randomNumber = Int.random(in: labelSonucInt+1...labelSonucInt+5)
+                     }
+                     button.setTitle("\(randomNumber)", for: .normal)
+                     assignedNumbers.insert(randomNumber)
+                 }
+             } else {
+                 // labelSonuc Int tipine dönüştürülemedi, hata işleme kodu eklenmeli
+             }
+         }
+     } else {
+         var assignedNumbers = Set<Int>()
+
+         let resultButton = buttons.randomElement()!
+         resultButton.setTitle("\(result!)", for: .normal)
+         assignedNumbers.insert(result!)
+
+         for button in buttons where button != resultButton {
+             if let labelSonucInt = result {
+                 var randomNumber = Int.random(in: result!-10...result!+10)
+                 while assignedNumbers.contains(randomNumber) {
+                     randomNumber = Int.random(in: result!-10...result!+10)
+                 }
+                 button.setTitle("\(randomNumber)", for: .normal)
+                 assignedNumbers.insert(randomNumber)
+
+                 if result! <= 10 {
+                     var randomNumber = Int.random(in: result!+1...result!+5)
+                     while assignedNumbers.contains(randomNumber) {
+                         randomNumber = Int.random(in: result!+1...result!+5)
+                     }
+                     button.setTitle("\(randomNumber)", for: .normal)
+                     assignedNumbers.insert(randomNumber)
+                 }
+             } else {
+                 // labelSonuc Int tipine dönüştürülemedi, hata işleme kodu eklenmeli
+             }
+         }
+     }
+     print("result: \(result!)")
+ }
+ */

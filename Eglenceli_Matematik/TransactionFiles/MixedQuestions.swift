@@ -40,7 +40,8 @@ class MixedQuestions: UIViewController {
     @IBOutlet weak var hardButton: UIButton!
     
     @IBOutlet var labels: [UILabel]!
-   
+    @IBOutlet weak var audioNoneButton: UIButton!
+    
     var audioPlayer = AVAudioPlayer()
     
     var randomIndex: Int?
@@ -74,15 +75,23 @@ class MixedQuestions: UIViewController {
     
     var addTime: [String] = []
     
+    var audioPlayerNone = true
+    
+    var imageIndex = 1
+    var buttonsIsEnabled = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(audioPlayerNone)
 
         imageView.image = UIImage(named: "gokce4")
+        audioNoneButton.setImage(UIImage(named: "sound"), for: .normal)
         toggleButtons() // True - False
         timeKeysHidden()
         allButtonsHidden()
         
+    
 
         easyButton.layer.cornerRadius = 10
         normalButton.layer.cornerRadius = 10
@@ -118,14 +127,6 @@ class MixedQuestions: UIViewController {
             print("değiştirilen skor tablosu: \(scoreBoard)")
         }
     }
-    
-    
-    
-
-    
-    
-    
-    
     
     
     
@@ -190,7 +191,17 @@ class MixedQuestions: UIViewController {
         audioPlayer.play()
         }
         
+    func noneVoices(){
         
+        
+        if  audioPlayerNone {
+            audioPlayer.volume = 0
+            audioPlayerNone = false
+        } else {
+            audioPlayer.volume = 1
+            audioPlayerNone = true
+        }
+    }
         
 //------------ END -------------------------------------------------------------
 
@@ -260,8 +271,8 @@ class MixedQuestions: UIViewController {
                     questionLabel3.layer.isHidden = true
                     answerLabel.layer.isHidden = true
                     iconLabel.layer.isHidden = true
+                    audioNoneButton.layer.isHidden = true
                     equalLabel.layer.isHidden = true
-
                     hideButtons = false
                 } else {
                     easyButton.layer.isHidden = true
@@ -279,6 +290,7 @@ class MixedQuestions: UIViewController {
                     answerLabel.layer.isHidden = false
                     iconLabel.layer.isHidden = false
                     equalLabel.layer.isHidden = false
+                    audioNoneButton.layer.isHidden = false
                     hideButtons = true
                 }
             }
@@ -318,6 +330,21 @@ class MixedQuestions: UIViewController {
                 }
             }
             
+    func buttonsEnabled() {
+        if buttonsIsEnabled {
+            aButton.isEnabled = false
+            bButton.isEnabled = false
+            cButton.isEnabled = false
+            dButton.isEnabled = false
+            buttonsIsEnabled = false
+        } else {
+            aButton.isEnabled = true
+            bButton.isEnabled = true
+            cButton.isEnabled = true
+            dButton.isEnabled = true
+            buttonsIsEnabled = true
+        }
+    }
             
             
 // ----------------------END ---------------------------------------------
@@ -332,8 +359,8 @@ class MixedQuestions: UIViewController {
             allButtonsHidden()
             timeKeysHidden()
             answerLabel.text = ""
-           // startTimer()
-            currentIndex = 39
+            startTimer()
+            currentIndex = 38
             seconds = 0
             right = 0
             wrong = 0
@@ -350,7 +377,7 @@ class MixedQuestions: UIViewController {
             timeKeysHidden()
             answerLabel.text = ""
             startTimer()
-            currentIndex = 38
+            currentIndex = 20
             seconds = 0
             right = 0
             wrong = 0
@@ -365,7 +392,7 @@ class MixedQuestions: UIViewController {
             allButtonsHidden()
             timeKeysHidden()
             answerLabel.text = ""
-           // startTimer()
+            startTimer()
             currentIndex = 0
             seconds = 0
             right = 0
@@ -376,6 +403,7 @@ class MixedQuestions: UIViewController {
             transactionFunction()
         }
         
+    
         
         @IBAction func buttonTapped(_ sender: UIButton) {
             if sender.title(for: .normal) == labelSonuc {
@@ -384,10 +412,17 @@ class MixedQuestions: UIViewController {
                 right += 1
                 rightLabel.text = "\(right)"
                 currentIndex += 1
-                applaud()
+                buttonsEnabled()
+                
                 questionLabel1.layer.isHidden = false
                 questionLabel2.layer.isHidden = false
                 questionLabel3.layer.isHidden = false
+                
+                if audioPlayerNone == true {
+                    applaud()
+                }
+                
+                
                 
                 if currentIndex == 40 {
                     stopTimer()
@@ -406,6 +441,7 @@ class MixedQuestions: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                         answerLabel.text = ""
                         transactionFunction()
+                        buttonsEnabled()
                     }
                 }
                 
@@ -415,10 +451,14 @@ class MixedQuestions: UIViewController {
                 right += 1
                 rightLabel.text = "\(right)"
                 currentIndex += 1
-                applaud()
+                buttonsEnabled()
                 questionLabel1.layer.isHidden = false
                 questionLabel2.layer.isHidden = false
                 questionLabel3.layer.isHidden = false
+                
+                if audioPlayerNone == true {
+                    applaud()
+                }
                 
                 if currentIndex == 40 {
                     stopTimer()
@@ -438,6 +478,7 @@ class MixedQuestions: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
                         answerLabel.text = ""
                         transactionFunction()
+                        buttonsEnabled()
                         
                     }
                 }
@@ -448,9 +489,12 @@ class MixedQuestions: UIViewController {
                     answerLabel.text = "Yanlış Cevap.. Sonuç \(labelSonuc) olacaktı"
                 }
                 wrong += 1
-                tabiEfendim()
                 wrongLabel.text = "\(wrong)"
                 sender.backgroundColor = .red
+                buttonsEnabled()
+                if audioPlayerNone == true {
+                    tabiEfendim()
+                }
                 
                 print("labelSonuc: \(labelSonuc)")
                 questionLabel1.layer.isHidden = false
@@ -458,7 +502,9 @@ class MixedQuestions: UIViewController {
                 questionLabel3.layer.isHidden = false
            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+                self.buttonsEnabled()
                transactionFunction()
+                
 
                 if wrongLabel.text == "\(5)" {  // MAX 10 YANLIŞ YAPABİLSİN
                     stopTimer()
@@ -469,9 +515,25 @@ class MixedQuestions: UIViewController {
                }
             }
         }
+    
+  
+    @IBAction func noVoices(_ sender: Any) {
+        
+       noneVoices()
+    
+        if imageIndex == 1 {
+                audioNoneButton.setImage(UIImage(named: "nosound2"), for: .normal)
+                imageIndex = 2
+            } else {
+                audioNoneButton.setImage(UIImage(named: "sound"), for: .normal)
+                imageIndex = 1
+        }
+    }
+    
+    
         
         
-    // ----------------------END ---------------------------------------------
+// ----------------------END --------------------------------------------
 
     
     
@@ -565,8 +627,8 @@ class MixedQuestions: UIViewController {
         
         if switchKey == "normal" {
             
-        let icindenSec = [5,8,10,14,18,22,28,33,38]
-        if icindenSec.contains(currentIndex) {
+        let chooseFrom = [5,8,10,14,18,22,28,33,38]
+        if chooseFrom.contains(currentIndex) {
             questionLabel3.layer.isHidden = false
             let labeller = labels.randomElement()!
             labeller.layer.isHidden = true

@@ -29,8 +29,9 @@ class SubstractionPage: UIViewController {
     @IBOutlet weak var switchMode: UISwitch!
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var audioNoneButton: UIButton!
     
-    let customColor = UIColor(red: 0.890, green: 0.624, blue: 0.851, alpha: 1.0)
+    let customColor = UIColor(red: 0.463, green: 0.839, blue: 1000, alpha: 1.0)
     var audioPlayer = AVAudioPlayer()
     
     var question: String?
@@ -44,7 +45,8 @@ class SubstractionPage: UIViewController {
     var counter: Int?
     
     var buttonsIsEnabled = true
-    
+    var audioPlayerNone = true
+    var imageIndex = 1
     
     
     
@@ -62,11 +64,12 @@ class SubstractionPage: UIViewController {
         dButton.layer.cornerRadius = 8
         sendButton.layer.cornerRadius = 8
         showAnswer.layer.cornerRadius = 8
-        switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
         transactionFunc()
         scoreBoard()
         counter = 0
         timeLabel.text = "\(counter!)"
+        audioNoneButton.setImage(UIImage(named: "sound"), for: .normal)
+        switchMode.addTarget(self, action: #selector(forSwitchMode), for: .valueChanged)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFunc), userInfo: nil, repeats: true)
 
 
@@ -125,22 +128,21 @@ class SubstractionPage: UIViewController {
         func transactionFunc(){
             let number1 = Int.random(in: 1...99)
             let number2 = Int.random(in: 1...50)
-            let  question = "Bu işlemin Sonucu Kaçtır ?   \(number1) - \(number2)"
+            let  question = "\(number1) - \(number2)"
             aButton.backgroundColor = customColor
             bButton.backgroundColor = customColor
             cButton.backgroundColor = customColor
             dButton.backgroundColor = customColor
-            // çarpım işlemini yap
+            sendButton.backgroundColor = customColor
             result = number1 - number2
             answer = "\(result!)"
             questionLabel.text = "\(question)"
             answerLabel.text =  ""
+            imageView.loadGif(name: "clock")
 
-            // rastgele bir button seç ve işlem sonucunu göster
             let resultButton = buttons.randomElement()!
             resultButton.setTitle("\(result!)", for: .normal)
 
-            // diğer buttonlara farklı sayılar ata
             for button in buttons where button != resultButton {
                 button.setTitle("\(Int.random(in: result-10...result+10))", for: .normal)
                 if result  <= 10 {
@@ -166,6 +168,16 @@ class SubstractionPage: UIViewController {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         }
+    
+    func noneVoices(){
+        if  audioPlayerNone {
+            audioPlayer.volume = 0
+            audioPlayerNone = false
+        } else {
+            audioPlayer.volume = 1
+            audioPlayerNone = true
+        }
+    }
 //----------------------END----------------------------------------------------
         
         
@@ -180,8 +192,10 @@ class SubstractionPage: UIViewController {
                 right += 1
                 rightLabel.text = "\(right)"
                 sender.backgroundColor = .green
-                applaud()
                 buttonsEnabled()
+                if audioPlayerNone == true {
+                    applaud()
+                }
                 
                 
             } else {
@@ -191,8 +205,10 @@ class SubstractionPage: UIViewController {
                 wrong += 1
                 wrongLabel.text = "\(wrong)"
                 sender.backgroundColor = .red
-                tabiEfendim()
                 buttonsEnabled()
+                if audioPlayerNone == true {
+                    tabiEfendim()
+                }
             }
             Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.transactionFunc()
@@ -203,23 +219,43 @@ class SubstractionPage: UIViewController {
         @IBAction func sendButtonTapped(_ sender: Any) {
         userAnswer = textField.text
           if userAnswer == answer {
-              print("tebrikler")
-              imageView.image = UIImage(named: "kalp")
+              imageView.loadGif(name: "fisek")
               answerLabel.text = "Doğru... Aferin Sana.. "
+              if audioPlayerNone == true {
+                  applaud()
+              }
             } else {
                 imageView.image = UIImage(named: "hayir")
                 answerLabel.text = "Yanlış.. Doğru Cevap \(answer!) olacaktı"
-                print("maalesef")
+                if audioPlayerNone == true {
+                    tabiEfendim()
+                }
             }
             textField.text = ""
             transactionFunc()
+            buttonsEnabled()
         }
         
         @IBAction func showSendButtonTapped(_ sender: Any) {
             answerLabel.text =  "Doğru Cevap \(answer!) olacaktı"
             imageView.image = UIImage(named: "hayir")
-            tabiEfendim()
+            if audioPlayerNone == true {
+                tabiEfendim()
+            }
         }
+    
+    
+    @IBAction func noVoices(_ sender: Any) {
+        noneVoices()
+     
+         if imageIndex == 1 {
+                 audioNoneButton.setImage(UIImage(named: "nosound2"), for: .normal)
+                 imageIndex = 2
+             } else {
+                 audioNoneButton.setImage(UIImage(named: "sound"), for: .normal)
+                 imageIndex = 1
+         }
+    }
 //---------------------END-----------------------------------------------
 
 

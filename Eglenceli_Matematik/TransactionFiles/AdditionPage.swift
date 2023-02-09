@@ -29,6 +29,9 @@ class AdditionPage: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var switchMode: UISwitch!
     @IBOutlet weak var textField: UITextField!
+  
+    @IBOutlet weak var audioNoneButton: UIButton!
+    
 
     let customColor = UIColor(red: 0.890, green: 0.624, blue: 0.851, alpha: 1.0)
     var audioPlayer = AVAudioPlayer()
@@ -44,14 +47,15 @@ class AdditionPage: UIViewController {
     var counter: Int?
     
     var buttonsIsEnabled = true
+    var audioPlayerNone = true
+    var imageIndex = 1
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        audioNoneButton.setImage(UIImage(named: "sound"), for: .normal)
         view.addSubview(switchMode)
-        print(switchMode.isOn)
         switchMode.isOn = true
-        print(switchMode.isOn)
         sendButton.isHidden = true
         textField.isHidden = true
         aButton.layer.cornerRadius = 8
@@ -125,17 +129,15 @@ class AdditionPage: UIViewController {
         bButton.backgroundColor = customColor
         cButton.backgroundColor = customColor
         dButton.backgroundColor = customColor
-        // çarpım işlemini yap
         result = number1 + number2
         answer = "\(result!)"
         questionLabel.text = "\(question)"
         answerLabel.text =  ""
+        imageView.loadGif(name: "clock")
 
-        // rastgele bir button seç ve işlem sonucunu göster
         let resultButton = buttons.randomElement()!
         resultButton.setTitle("\(result!)", for: .normal)
 
-        // diğer buttonlara farklı sayılar ata
         for button in buttons where button != resultButton {
             button.setTitle("\(Int.random(in: result-10...result+10))", for: .normal)
             if result  <= 10 {
@@ -161,6 +163,16 @@ class AdditionPage: UIViewController {
     audioPlayer.prepareToPlay()
     audioPlayer.play()
     }
+    
+    func noneVoices(){
+        if  audioPlayerNone {
+            audioPlayer.volume = 0
+            audioPlayerNone = false
+        } else {
+            audioPlayer.volume = 1
+            audioPlayerNone = true
+        }
+    }
 //----------------------END----------------------------------------------------
     
     
@@ -170,26 +182,27 @@ class AdditionPage: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         if sender.title(for: .normal) == "\(result!)" {
             answerLabel.text = "Doğru... Aferin Sana.. "
-            imageView.image = UIImage(named: "kalp")
-            print("Tebrikler!")
+            imageView.loadGif(name: "fisek")
             right += 1
             rightLabel.text = "\(right)"
             sender.backgroundColor = .green
-            applaud()
             buttonsEnabled()
-            
+            if audioPlayerNone == true {
+                applaud()
+            }
             
         } else {
             answerLabel.text =  "Doğru Cevap \(answer!) olacaktı"
             imageView.image = UIImage(named: "hayir")
-            print("Yanlış cevap, tekrar deneyin.")
             wrong += 1
             wrongLabel.text = "\(wrong)"
             sender.backgroundColor = .red
-            tabiEfendim()
             buttonsEnabled()
+            if audioPlayerNone == true {
+                tabiEfendim()
+            }
         }
-        Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.transactionFunc()
             self.buttonsEnabled()
         }
@@ -198,22 +211,44 @@ class AdditionPage: UIViewController {
     @IBAction func sendButtonTapped(_ sender: Any) {
     userAnswer = textField.text
       if userAnswer == answer {
-          print("tebrikler")
           imageView.loadGif(name: "fisek")
           answerLabel.text = "Doğru... Aferin Sana.. "
+          if audioPlayerNone == true {
+              applaud()
+          }
         } else {
             imageView.image = UIImage(named: "hayir")
             answerLabel.text = "Yanlış.. Doğru Cevap \(answer!) olacaktı"
-            print("maalesef")
+            if audioPlayerNone == true {
+                tabiEfendim()
+            }
         }
-        textField.text = ""
-        transactionFunc()
+        Dispatch.DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.transactionFunc()
+            self.buttonsEnabled()
+            self.textField.text = ""
+        }
     }
     
     @IBAction func showSendButtonTapped(_ sender: Any) {
         answerLabel.text =  "Doğru Cevap \(answer!) olacaktı"
         imageView.image = UIImage(named: "hayir")
-        tabiEfendim()
+        if audioPlayerNone == true {
+            tabiEfendim()
+        }
+    }
+    
+    
+    @IBAction func noVoices(_ sender: Any) {
+        noneVoices()
+     
+         if imageIndex == 1 {
+                 audioNoneButton.setImage(UIImage(named: "nosound2"), for: .normal)
+                 imageIndex = 2
+             } else {
+                 audioNoneButton.setImage(UIImage(named: "sound"), for: .normal)
+                 imageIndex = 1
+         }
     }
 //---------------------END-----------------------------------------------
 
